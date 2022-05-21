@@ -1,0 +1,9 @@
+.container{
+	margin-top: 50px;
+}
+
+.title-header{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
