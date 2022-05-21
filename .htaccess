@@ -1,0 +1,4 @@
+PassengerNodejs /home/e/egorse6o/.local/bin/node
+PassengerAppRoot /home/e/egorse6o/bookstore/bookstore
+PassengerAppType node
+PassengerStartupFile index.js
