@@ -1,25 +1,28 @@
 
 const modal = new bootstrap.Modal('#modal')
+const locationHref = window.location.toString().split('/')[window.location.toString().split('/').length - 1].split('.')[0]
 document.addEventListener('DOMContentLoaded', () => {
 	const inputPhoneCustomer = document.querySelector('input#phoneCustomer')
 	const inputPhoneEmployee = document.querySelector('input#phoneEmployee')
 
 	const maskOptionsCustomer = { mask: '{8}-000-000-00-00' }
 	const maskOptionsEmployee = { mask: '{495}-00-00' }
-	if (window.location.href === 'http://localhost:8000/employees') {
+	if (locationHref === 'employees') {
 		IMask(inputPhoneEmployee, maskOptionsEmployee)
 	}
-	else if (window.location.href === 'http://localhost:8000/customers' || window.location.href === 'http://localhost:8000/suppliers') {
+	else if (locationHref === 'customers' || locationHref === 'suppliers') {
 		IMask(inputPhoneCustomer, maskOptionsCustomer)
 	}
 
 
 })
 
+const locationHrefForApi = window.location.href
+
 const booksMethods = {
 	async getBooks() {
 		try {
-			await fetch('http://localhost:8000/api/books')
+			await fetch('http://egorse6o.beget.tech/api/books')
 				.then(data => data.json())
 				.then(data => this.books = data.items)
 		} catch (error) {
@@ -28,7 +31,7 @@ const booksMethods = {
 	},
 	async addBook() {
 		try {
-			const res = await fetch('http://localhost:8000/api/books', {
+			const res = await fetch('http://egorse6o.beget.tech/api/books', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -56,7 +59,7 @@ const booksMethods = {
 	async removeBooks() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://localhost:8000/api/books', {
+			const res = await fetch('http://egorse6o.beget.tech/api/books', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -83,7 +86,7 @@ const booksMethods = {
 const employeesMethods = {
 	async getEmployees() {
 		try {
-			await fetch('http://localhost:8000/api/employees')
+			await fetch('http://egorse6o.beget.tech/api/employees')
 				.then(data => data.json())
 				.then(data => this.employees = data.items)
 		} catch (error) {
@@ -92,7 +95,7 @@ const employeesMethods = {
 	},
 	async addEmployee() {
 		try {
-			const res = await fetch('http://localhost:8000/api/employees', {
+			const res = await fetch('http://egorse6o.beget.tech/api/employees', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -122,7 +125,7 @@ const employeesMethods = {
 	async removeEmployee() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://localhost:8000/api/employees', {
+			const res = await fetch('http://egorse6o.beget.tech/api/employees', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -150,7 +153,7 @@ const employeesMethods = {
 const positionsMethods = {
 	async getPositions() {
 		try {
-			await fetch('http://localhost:8000/api/positions')
+			await fetch('http://egorse6o.beget.tech/api/positions')
 				.then(data => data.json())
 				.then(data => this.positions = data.items)
 		} catch (error) {
@@ -159,7 +162,7 @@ const positionsMethods = {
 	},
 	async addPosition() {
 		try {
-			const res = await fetch('http://localhost:8000/api/positions', {
+			const res = await fetch('http://egorse6o.beget.tech/api/positions', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -189,7 +192,7 @@ const positionsMethods = {
 	async removePosition() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://localhost:8000/api/positions', {
+			const res = await fetch('http://egorse6o.beget.tech/api/positions', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -220,7 +223,7 @@ const positionsMethods = {
 const customersMethods = {
 	async getCustomers() {
 		try {
-			await fetch('http://localhost:8000/api/customers')
+			await fetch('http://egorse6o.beget.tech/api/customers')
 				.then(data => data.json())
 				.then(data => this.customers = data.items)
 		} catch (error) {
@@ -229,7 +232,7 @@ const customersMethods = {
 	},
 	async addCustomer() {
 		try {
-			const res = await fetch('http://localhost:8000/api/customers', {
+			const res = await fetch('http://egorse6o.beget.tech/api/customers', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -259,7 +262,7 @@ const customersMethods = {
 	async removeCustomer() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://localhost:8000/api/customers', {
+			const res = await fetch('http://egorse6o.beget.tech/api/customers', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -287,7 +290,7 @@ const customersMethods = {
 const purchasesMethods = {
 	async getPurchases() {
 		try {
-			await fetch('http://localhost:8000/api/purchases')
+			await fetch('http://egorse6o.beget.tech/api/purchases')
 				.then(data => data.json())
 				.then(data => this.purchases = data.items)
 		} catch (error) {
@@ -296,7 +299,7 @@ const purchasesMethods = {
 	},
 	async addPurchaser() {
 		try {
-			const res = await fetch('http://localhost:8000/api/purchases', {
+			const res = await fetch('http://egorse6o.beget.tech/api/purchases', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -325,7 +328,7 @@ const purchasesMethods = {
 	async removePurchaser() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://localhost:8000/api/purchases', {
+			const res = await fetch('http://egorse6o.beget.tech/api/purchases', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -353,7 +356,7 @@ const purchasesMethods = {
 const receiptsMethods = {
 	async getReceipts() {
 		try {
-			await fetch('http://localhost:8000/api/receipts')
+			await fetch('http://egorse6o.beget.tech/api/receipts')
 				.then(data => data.json())
 				.then(data => this.receipts = data.items)
 		} catch (error) {
@@ -362,7 +365,7 @@ const receiptsMethods = {
 	},
 	async addReceipt() {
 		try {
-			const res = await fetch('http://localhost:8000/api/receipts', {
+			const res = await fetch('http://egorse6o.beget.tech/api/receipts', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -388,7 +391,7 @@ const receiptsMethods = {
 	async removeReceipt() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://localhost:8000/api/receipts', {
+			const res = await fetch('http://egorse6o.beget.tech/api/receipts', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -416,7 +419,7 @@ const receiptsMethods = {
 const suppliersMethods = {
 	async getSuppliers() {
 		try {
-			await fetch('http://localhost:8000/api/suppliers')
+			await fetch('http://egorse6o.beget.tech/api/suppliers')
 				.then(data => data.json())
 				.then(data => this.suppliers = data.items)
 		} catch (error) {
@@ -425,7 +428,7 @@ const suppliersMethods = {
 	},
 	async addSupplier() {
 		try {
-			const res = await fetch('http://localhost:8000/api/suppliers', {
+			const res = await fetch('http://egorse6o.beget.tech/api/suppliers', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -453,7 +456,7 @@ const suppliersMethods = {
 	async removeSupplier() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://localhost:8000/api/suppliers', {
+			const res = await fetch('http://egorse6o.beget.tech/api/suppliers', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
