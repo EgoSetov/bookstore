@@ -562,27 +562,28 @@ let app = new Vue({
 	},
 	mounted() {
 		(async () => {
-			if (window.location.href === 'http://localhost:8000/books') {
+			const locationHref = window.location.toString().split('/')[window.location.toString().split('/').length - 1].split('.')[0]
+			if (locationHref === 'books') {
 				await this.getBooks()
 			}
-			else if (window.location.href === 'http://localhost:8000/employees') {
+			else if (locationHref === 'employees') {
 				await this.getEmployees()
 				await this.getPositions()
 			}
-			else if (window.location.href === 'http://localhost:8000/positions') {
+			else if (locationHref === 'positions') {
 				await this.getPositions()
 			}
-			else if (window.location.href === 'http://localhost:8000/customers') {
+			else if (locationHref === 'customers') {
 				await this.getCustomers()
 			}
-			else if (window.location.href === 'http://localhost:8000/purchases') {
+			else if (locationHref === 'purchases') {
 				await this.getPurchases()
 			}
-			else if (window.location.href === 'http://localhost:8000/receipts') {
+			else if (locationHref === 'receipts') {
 				await this.getReceipts()
 				await this.getSuppliers()
 			}
-			else if (window.location.href === 'http://localhost:8000/suppliers') {
+			else if (locationHref === 'suppliers') {
 				await this.getSuppliers()
 			}
 		})()

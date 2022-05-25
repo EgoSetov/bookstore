@@ -1,4 +1,5 @@
 import '../public/main.js'
+import '../public/style.css'
 
 import express from "express";
 import path from 'path';
