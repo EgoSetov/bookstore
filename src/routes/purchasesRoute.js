@@ -1,6 +1,6 @@
-import { Router } from "express";
-import sequelize from "../db.js";
-import { Purchaser } from "../models/index.js";
+const { Router } = require('express')
+const { Purchaser } = require('../models/index.js')
+const sequelize = require('../db.js')
 
 const purchasesRoute = Router()
 
@@ -65,4 +65,4 @@ purchasesRoute
 		}
 	})
 
-export default purchasesRoute
+module.exports = purchasesRoute

@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { Book } from "../models/index.js";
+const { Router } = require('express')
+const { Book } = require('../models/index.js')
 
 const bookRoute = Router()
 
@@ -74,4 +74,4 @@ bookRoute
 		}
 	})
 
-export default bookRoute
+module.exports = bookRoute

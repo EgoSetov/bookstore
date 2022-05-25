@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { Employee } from "../models/index.js";
+const { Router } = require('express')
+const { Employee } = require('../models/index.js')
 
 const employeesRoute = Router()
 
@@ -52,4 +52,4 @@ employeesRoute
 		}
 	})
 
-export default employeesRoute
+module.exports = employeesRoute

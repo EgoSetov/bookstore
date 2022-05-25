@@ -1,20 +1,18 @@
-import express from "express";
-import path from 'path';
+const express = require('express')
+const path = require('path')
 
-const __dirname = path.resolve();
-
-import bookRoute from "./routes/bookRoute.js";
-import customersRoute from "./routes/customersRoute.js";
-import employeesRoute from "./routes/employeesRoute.js";
-import positiosRoute from "./routes/positiosRoute.js";
-import purchasesRoute from "./routes/purchasesRoute.js";
-import receiptsRoute from "./routes/receiptsRoute.js";
-import suppliersRoute from "./routes/suppliersRoute.js";
+const bookRoute = require('./routes/bookRoute.js')
+const customersRoute = require('./routes/customersRoute.js')
+const employeesRoute = require('./routes/employeesRoute.js')
+const positiosRoute = require('./routes/positiosRoute.js')
+const purchasesRoute = require('./routes/purchasesRoute.js')
+const receiptsRoute = require('./routes/receiptsRoute.js')
+const suppliersRoute = require('./routes/suppliersRoute.js')
 
 const PORT = 8000;
 const app = express();
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static('./public'));
 app.use(express.json())
 
 app.use('/api/books', bookRoute)
@@ -36,4 +34,5 @@ app.get("/suppliers", (_, res) => res.sendFile('/suppliers.html', { root: 'publi
 
 app.listen(PORT, () => {
 	console.log(`the server is started on the port = ${PORT}`);
+	console.log(__dirname);
 });

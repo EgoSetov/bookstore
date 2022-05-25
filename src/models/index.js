@@ -1,7 +1,7 @@
-import { DataTypes, NUMBER } from "sequelize";
-import sequelize from "../db.js";
+const { DataTypes } = require('sequelize')
+const sequelize = require('../db.js')
 
-export const Book = sequelize.define(
+const Book = sequelize.define(
 	'books',
 	{
 		id: {
@@ -23,7 +23,7 @@ export const Book = sequelize.define(
 	}
 )
 
-export const Employee = sequelize.define(
+const Employee = sequelize.define(
 	'employees',
 	{
 		id: {
@@ -42,7 +42,7 @@ export const Employee = sequelize.define(
 	}
 )
 
-export const Position = sequelize.define(
+const Position = sequelize.define(
 	'positions',
 	{
 		id: {
@@ -61,7 +61,7 @@ export const Position = sequelize.define(
 	}
 )
 
-export const Customer = sequelize.define(
+const Customer = sequelize.define(
 	'customers',
 	{
 		id: {
@@ -80,7 +80,7 @@ export const Customer = sequelize.define(
 	}
 )
 
-export const Purchaser = sequelize.define(
+const Purchaser = sequelize.define(
 	'purchases',
 	{
 		id: {
@@ -99,7 +99,7 @@ export const Purchaser = sequelize.define(
 	}
 )
 
-export const Receipt = sequelize.define(
+const Receipt = sequelize.define(
 	'receipts',
 	{
 		id: {
@@ -115,7 +115,7 @@ export const Receipt = sequelize.define(
 	}
 )
 
-export const Suppliers = sequelize.define(
+const Suppliers = sequelize.define(
 	'suppliers',
 	{
 		id: {
@@ -131,3 +131,13 @@ export const Suppliers = sequelize.define(
 		timestamps: false,
 	}
 )
+
+module.exports = {
+	Book,
+	Employee,
+	Position,
+	Customer,
+	Purchaser,
+	Receipt,
+	Suppliers
+}
