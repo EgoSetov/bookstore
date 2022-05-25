@@ -1,18 +1,18 @@
 const express = require('express')
 const path = require('path')
 
-const bookRoute = require('./routes/bookRoute.js')
-const customersRoute = require('./routes/customersRoute.js')
-const employeesRoute = require('./routes/employeesRoute.js')
-const positiosRoute = require('./routes/positiosRoute.js')
-const purchasesRoute = require('./routes/purchasesRoute.js')
-const receiptsRoute = require('./routes/receiptsRoute.js')
-const suppliersRoute = require('./routes/suppliersRoute.js')
+const bookRoute = require('./src/routes/bookRoute.js')
+const customersRoute = require('./src/routes/customersRoute.js')
+const employeesRoute = require('./src/routes/employeesRoute.js')
+const positiosRoute = require('./src/routes/positiosRoute.js')
+const purchasesRoute = require('./src/routes/purchasesRoute.js')
+const receiptsRoute = require('./src/routes/receiptsRoute.js')
+const suppliersRoute = require('./src/routes/suppliersRoute.js')
 
 const PORT = 8000;
 const app = express();
 
-app.use(express.static('./public'));
+app.use(express.static(__dirname + '/public'));
 app.use(express.json())
 
 app.use('/api/books', bookRoute)
