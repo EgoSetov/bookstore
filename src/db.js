@@ -1,8 +1,15 @@
-const { Sequelize } = require('sequelize') 
+const { prop } = require('cheerio/lib/api/attributes')
+const { Sequelize } = require('sequelize')
 
-const sequelize = new Sequelize('bookstore', 'root', 'Bookstore123', {
-	host: 'localhost',
-	dialect: "mysql"
+const name = process.env['DB_NAME']
+const login = process.env['DB_LOGIN']
+const password = process.env['DB_PASSWORD']
+const host = process.env['DB_HOST']
+const dialect = process.env['DB_DIALECT']
+
+const sequelize = new Sequelize(name, login, password, {
+	host,
+	dialect
 })
 
 const connect = async () => {

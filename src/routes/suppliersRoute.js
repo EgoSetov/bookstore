@@ -1,12 +1,12 @@
 const { Router } = require('express')
-const { Suppliers } = require('../models/index.js')
+const { Supplier } = require('../models/index.js')
 
 const suppliersRoute = Router()
 
 suppliersRoute
 	.get('/', async (_, res) => {
 		try {
-			const suppliers = await Suppliers.findAll()
+			const suppliers = await Supplier.findAll()
 			res.status(200).json({ items: suppliers })
 		} catch (error) {
 			console.log(error);
@@ -19,7 +19,7 @@ suppliersRoute
 			const { name, phone, address } = req.body
 			if (!(name || phone || address)) return res.status(204).json({ detail: "name, phone, address field is required" })
 
-			const newSuppliers = await Suppliers.create({
+			const newSuppliers = await Supplier.create({
 				name,
 				phone,
 				address
@@ -37,7 +37,7 @@ suppliersRoute
 			const { suppliersId } = req.body
 			if (!suppliersId) return res.status(204).json({ detail: "id field is required" })
 			suppliersId.forEach(async (id) => {
-				await Suppliers.destroy({
+				await Supplier.destroy({
 					where: {
 						id
 					}

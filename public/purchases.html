@@ -23,36 +23,54 @@
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="/">Книжный магазин</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-								aria-expanded="false">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
 								Ссылки
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="/books">Книги</a></li>
-								<li><a class="dropdown-item" href="/employees">Сотрудники</a></li>
-								<li><a class="dropdown-item" href="/positions">Должности</a></li>
-								<li><a class="dropdown-item" href="/customers">Клиенты</a></li>
-								<li><a class="dropdown-item" href="/receipts">Поступления</a></li>
+								<li v-if="dataUser.isAuth"><a class="dropdown-item" href="/employees">Сотрудники</a></li>
+								<li v-if="dataUser.isAuth"><a class="dropdown-item" href="/positions">Должности</a></li>
+								<li v-if="dataUser.isAuth"><a class="dropdown-item" href="/customers">Клиенты</a></li>
+								<li v-if="dataUser.isAuth"><a class="dropdown-item" href="/receipts">Поступления</a></li>
 								<li><a class="dropdown-item" href="/suppliers">Поставщики</a></li>
 							</ul>
 						</li>
 					</ul>
+				</div>
+				<form v-if="!dataUser.isAuth" @submit.prevent="signin" class="authForm">
+					<div v-if="modal.visibleAuth" class="authForm-inputs">
+						<input v-model="form.user.login" type="text" class="form-control" placeholder="Логин">
+						<input v-model="form.user.password" type="password" class="form-control" placeholder="Пароль">
+					</div>
+					<div v-if="modal.visibleAuth" class="authForm-btns">
+						<button @click="signin" class="btn btn-success">Войти</button>
+						<button @click="showAuthForm" class="btn btn-danger">Закрыть</button>
+					</div>
+					<button v-else @click="showAuthForm" class="btn btn-primary">Авторизоваться</button>
+				</form>
+				<div v-else class="profile">
+					<h4 class="text-light">{{dataUser.role}}</h4>
+					<button @click="exit" class="btn btn-danger">Выйти</button>
 				</div>
 			</div>
 		</nav>
 		<div class="container">
 			<div class="title-header">
 				<h1>Покупки</h1>
-				<button @click="showModal" class="btn btn-success">Добавить</button>
-				<button @click="showCheckBox" class="btn btn-warning">Выбрать для удаления</button>
-				<button @click="removePurchaser" v-if="modal.visibleCheckBox" class="btn btn-danger">Удалить</button>
+				<div v-if="dataUser.isAuth" class="title-header-btns">
+					<button @click="showModal" class="btn btn-success">Добавить</button>
+					<button @click="showCheckBox" class="btn btn-warning">Выбрать для удаления</button>
+					<button @click="removePurchaser" v-if="modal.visibleCheckBox" class="btn btn-danger">Удалить</button>
+				</div>
 			</div>
 			<hr>
 			<table v-if="purchases.length" class="table">

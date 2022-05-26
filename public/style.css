@@ -7,3 +7,28 @@
 	align-items: center;
 	gap: 10px;
 }
+
+.authForm{
+	display: flex;
+	gap: 10px;
+}
+
+.authForm-inputs{
+	display: flex;
+	gap: 10px;
+}
+
+.profile{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+@media (max-width: 630px){
+	.authForm{
+		margin-top: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+}

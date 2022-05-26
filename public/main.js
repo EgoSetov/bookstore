@@ -1,6 +1,9 @@
 
-const modal = new bootstrap.Modal('#modal')
 const locationHref = window.location.toString().split('/')[window.location.toString().split('/').length - 1].split('.')[0]
+let modal;
+if (!(locationHref === '' || locationHref === 'index')) {
+	modal = new bootstrap.Modal('#modal')
+}
 document.addEventListener('DOMContentLoaded', () => {
 	const inputPhoneCustomer = document.querySelector('input#phoneCustomer')
 	const inputPhoneEmployee = document.querySelector('input#phoneEmployee')
@@ -14,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		IMask(inputPhoneCustomer, maskOptionsCustomer)
 	}
 
-
 })
 
 const locationHrefForApi = window.location.href
@@ -22,7 +24,7 @@ const locationHrefForApi = window.location.href
 const booksMethods = {
 	async getBooks() {
 		try {
-			await fetch('http://egorse6o.beget.tech/api/books')
+			await fetch('http://localhost:8000/api/books')
 				.then(data => data.json())
 				.then(data => this.books = data.items)
 		} catch (error) {
@@ -31,7 +33,7 @@ const booksMethods = {
 	},
 	async addBook() {
 		try {
-			const res = await fetch('http://egorse6o.beget.tech/api/books', {
+			const res = await fetch('http://localhost:8000/api/books', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -59,7 +61,7 @@ const booksMethods = {
 	async removeBooks() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://egorse6o.beget.tech/api/books', {
+			const res = await fetch('http://localhost:8000/api/books', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -86,7 +88,7 @@ const booksMethods = {
 const employeesMethods = {
 	async getEmployees() {
 		try {
-			await fetch('http://egorse6o.beget.tech/api/employees')
+			await fetch('http://localhost:8000/api/employees')
 				.then(data => data.json())
 				.then(data => this.employees = data.items)
 		} catch (error) {
@@ -95,7 +97,7 @@ const employeesMethods = {
 	},
 	async addEmployee() {
 		try {
-			const res = await fetch('http://egorse6o.beget.tech/api/employees', {
+			const res = await fetch('http://localhost:8000/api/employees', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -125,7 +127,7 @@ const employeesMethods = {
 	async removeEmployee() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://egorse6o.beget.tech/api/employees', {
+			const res = await fetch('http://localhost:8000/api/employees', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -153,7 +155,7 @@ const employeesMethods = {
 const positionsMethods = {
 	async getPositions() {
 		try {
-			await fetch('http://egorse6o.beget.tech/api/positions')
+			await fetch('http://localhost:8000/api/positions')
 				.then(data => data.json())
 				.then(data => this.positions = data.items)
 		} catch (error) {
@@ -162,7 +164,7 @@ const positionsMethods = {
 	},
 	async addPosition() {
 		try {
-			const res = await fetch('http://egorse6o.beget.tech/api/positions', {
+			const res = await fetch('http://localhost:8000/api/positions', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -192,7 +194,7 @@ const positionsMethods = {
 	async removePosition() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://egorse6o.beget.tech/api/positions', {
+			const res = await fetch('http://localhost:8000/api/positions', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -223,7 +225,7 @@ const positionsMethods = {
 const customersMethods = {
 	async getCustomers() {
 		try {
-			await fetch('http://egorse6o.beget.tech/api/customers')
+			await fetch('http://localhost:8000/api/customers')
 				.then(data => data.json())
 				.then(data => this.customers = data.items)
 		} catch (error) {
@@ -232,7 +234,7 @@ const customersMethods = {
 	},
 	async addCustomer() {
 		try {
-			const res = await fetch('http://egorse6o.beget.tech/api/customers', {
+			const res = await fetch('http://localhost:8000/api/customers', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -262,7 +264,7 @@ const customersMethods = {
 	async removeCustomer() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://egorse6o.beget.tech/api/customers', {
+			const res = await fetch('http://localhost:8000/api/customers', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -290,7 +292,7 @@ const customersMethods = {
 const purchasesMethods = {
 	async getPurchases() {
 		try {
-			await fetch('http://egorse6o.beget.tech/api/purchases')
+			await fetch('http://localhost:8000/api/purchases')
 				.then(data => data.json())
 				.then(data => this.purchases = data.items)
 		} catch (error) {
@@ -299,7 +301,7 @@ const purchasesMethods = {
 	},
 	async addPurchaser() {
 		try {
-			const res = await fetch('http://egorse6o.beget.tech/api/purchases', {
+			const res = await fetch('http://localhost:8000/api/purchases', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -328,7 +330,7 @@ const purchasesMethods = {
 	async removePurchaser() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://egorse6o.beget.tech/api/purchases', {
+			const res = await fetch('http://localhost:8000/api/purchases', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -356,7 +358,7 @@ const purchasesMethods = {
 const receiptsMethods = {
 	async getReceipts() {
 		try {
-			await fetch('http://egorse6o.beget.tech/api/receipts')
+			await fetch('http://localhost:8000/api/receipts')
 				.then(data => data.json())
 				.then(data => this.receipts = data.items)
 		} catch (error) {
@@ -365,7 +367,7 @@ const receiptsMethods = {
 	},
 	async addReceipt() {
 		try {
-			const res = await fetch('http://egorse6o.beget.tech/api/receipts', {
+			const res = await fetch('http://localhost:8000/api/receipts', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -391,7 +393,7 @@ const receiptsMethods = {
 	async removeReceipt() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://egorse6o.beget.tech/api/receipts', {
+			const res = await fetch('http://localhost:8000/api/receipts', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -419,7 +421,7 @@ const receiptsMethods = {
 const suppliersMethods = {
 	async getSuppliers() {
 		try {
-			await fetch('http://egorse6o.beget.tech/api/suppliers')
+			await fetch('http://localhost:8000/api/suppliers')
 				.then(data => data.json())
 				.then(data => this.suppliers = data.items)
 		} catch (error) {
@@ -428,7 +430,7 @@ const suppliersMethods = {
 	},
 	async addSupplier() {
 		try {
-			const res = await fetch('http://egorse6o.beget.tech/api/suppliers', {
+			const res = await fetch('http://localhost:8000/api/suppliers', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
@@ -456,7 +458,7 @@ const suppliersMethods = {
 	async removeSupplier() {
 		try {
 			if (!this.deleteItemsId.length) return this.modal.visibleCheckBox = false
-			const res = await fetch('http://egorse6o.beget.tech/api/suppliers', {
+			const res = await fetch('http://localhost:8000/api/suppliers', {
 				method: 'DELETE',
 				headers: {
 					"Content-Type": "application/json"
@@ -481,12 +483,59 @@ const suppliersMethods = {
 	}
 }
 
+const usersMethods = {
+	async signin() {
+		const res = await fetch('http://localhost:8000/api/users/signin', {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				login: this.form.user.login,
+				password: this.form.user.password
+			})
+		})
+			.then(data => data.json())
+		if (res?.detail) {
+			alert('Не удалось авторизоваться, возможно не правильный логин или пароль')
+		} else {
+			const { token } = res
+			localStorage.setItem('token', JSON.stringify(token))
+			this.connect()
+		}
+	},
+
+	async connect() {
+		const token = JSON.parse(localStorage.getItem('token'))
+		const res = await fetch('http://localhost:8000/api/users/connect', {
+			method: 'GET',
+			headers: {
+				Authorization: `Berear ${token}`
+			}
+		}).then(data => data.json())
+		if (res?.id) {
+			this.dataUser = {
+				isAuth: true,
+				role: res.role,
+				login: res.login
+			}
+		}
+		return res
+	}
+}
+
 let app = new Vue({
 	el: '#app',
 	data: {
+		dataUser: {
+			isAuth: false,
+			role: null,
+			login: null,
+		},
 		deleteItemsId: [],
 		modal: {
 			visibleCheckBox: false,
+			visibleAuth: false,
 			addModal: false
 		},
 		positions: [],
@@ -532,6 +581,10 @@ let app = new Vue({
 				name: '',
 				phone: '',
 				address: ''
+			},
+			user: {
+				login: '',
+				password: '',
 			}
 		}
 	},
@@ -543,6 +596,7 @@ let app = new Vue({
 		...purchasesMethods,
 		...receiptsMethods,
 		...suppliersMethods,
+		...usersMethods,
 		closeModals() {
 			this.modal.addModal = false
 			modal.hide()
@@ -561,34 +615,92 @@ let app = new Vue({
 		showModal() {
 			this.modal.addModal = !this.modal.addModal
 			modal.show()
+		},
+		showAuthForm() {
+			this.modal.visibleAuth = !this.modal.visibleAuth
+		},
+		exit() {
+			localStorage.removeItem('token')
+			this.dataUser = {
+				isAuth: false,
+				role: null,
+				login: null,
+			}
+			const arr = window.location.href.toString().split()
+			arr.pop()
+			window.location.href = arr.join() + '/'
 		}
 	},
 	mounted() {
 		(async () => {
-			const locationHref = window.location.toString().split('/')[window.location.toString().split('/').length - 1].split('.')[0]
-			if (locationHref === 'books') {
-				await this.getBooks()
+			if (localStorage.getItem('token')) {
+				const res = await this.connect()
+				if (res?.id) {
+					switch (locationHref) {
+						case 'employees':
+							await this.getEmployees()
+							await this.getPositions()
+							break
+						case 'positions':
+							await this.getPositions()
+							break
+						case 'customers':
+							await this.getCustomers()
+							break
+						case 'purchases':
+							await this.getPurchases()
+							break
+						case 'receipts':
+							await this.getReceipts()
+							await this.getSuppliers()
+							break
+						case 'books':
+							await this.getBooks()
+							break
+						case 'suppliers':
+							await this.getSuppliers()
+					}
+				} else {
+					if (locationHref === 'employees' ||
+						locationHref === 'positions' ||
+						locationHref === 'customers' ||
+						locationHref === 'purchases' ||
+						locationHref === 'receipts'
+					) {
+						const arr = window.location.href.toString().split()
+						arr.pop()
+						window.location.href = arr.join() + '/'
+						return
+					}
+					switch (locationHref) {
+						case 'book':
+							await this.getBooks()
+							break
+						case 'suppliers':
+							await this.getSuppliers()
+					}
+				}
+			} else {
+				if (locationHref === 'employees' ||
+					locationHref === 'positions' ||
+					locationHref === 'customers' ||
+					locationHref === 'purchases' ||
+					locationHref === 'receipts'
+				) {
+					const arr = window.location.href.toString().split()
+					arr.pop()
+					window.location.href = arr.join() + '/'
+					return
+				}
+				switch (locationHref) {
+					case 'books':
+						await this.getBooks()
+						break
+					case 'suppliers':
+						await this.getSuppliers()
+				}
 			}
-			else if (locationHref === 'employees') {
-				await this.getEmployees()
-				await this.getPositions()
-			}
-			else if (locationHref === 'positions') {
-				await this.getPositions()
-			}
-			else if (locationHref === 'customers') {
-				await this.getCustomers()
-			}
-			else if (locationHref === 'purchases') {
-				await this.getPurchases()
-			}
-			else if (locationHref === 'receipts') {
-				await this.getReceipts()
-				await this.getSuppliers()
-			}
-			else if (locationHref === 'suppliers') {
-				await this.getSuppliers()
-			}
+
 		})()
 	}
 })

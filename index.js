@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+require('dotenv').config()
 
 const bookRoute = require('./src/routes/bookRoute.js')
 const customersRoute = require('./src/routes/customersRoute.js')
@@ -8,6 +9,7 @@ const positiosRoute = require('./src/routes/positiosRoute.js')
 const purchasesRoute = require('./src/routes/purchasesRoute.js')
 const receiptsRoute = require('./src/routes/receiptsRoute.js')
 const suppliersRoute = require('./src/routes/suppliersRoute.js')
+const userRoute = require('./src/routes/userRoute.js')
 
 const PORT = 8000;
 const app = express();
@@ -22,6 +24,7 @@ app.use('/api/customers', customersRoute)
 app.use('/api/purchases', purchasesRoute)
 app.use('/api/receipts', receiptsRoute)
 app.use('/api/suppliers', suppliersRoute)
+app.use('/api/users', userRoute)
 
 app.get("/", (_, res) => res.sendFile('/index.html', { root: 'public' }))
 app.get("/books", (_, res) => res.sendFile('/books.html', { root: 'public' },))
@@ -34,5 +37,5 @@ app.get("/suppliers", (_, res) => res.sendFile('/suppliers.html', { root: 'publi
 
 app.listen(PORT, () => {
 	console.log(`the server is started on the port = ${PORT}`);
-	console.log(__dirname);
+	console.log(process.env.DB_CONFIG);
 });

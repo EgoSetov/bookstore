@@ -16,7 +16,7 @@ positiosRoute
 
 	.post('/', async (req, res) => {
 		try {
-			const { name } = req.body
+			const { name, salary } = req.body
 			if (!name) return res.status(204).json({ detail: "name field is required" })
 
 			const validatePosition = await Position.findAll({

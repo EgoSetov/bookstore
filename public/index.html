@@ -36,14 +36,29 @@
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="/books">Книги</a></li>
-								<li><a class="dropdown-item" href="/employees">Сотрудники</a></li>
-								<li><a class="dropdown-item" href="/positions">Должности</a></li>
-								<li><a class="dropdown-item" href="/customers">Клиенты</a></li>
-								<li><a class="dropdown-item" href="/receipts">Поступления</a></li>
+								<li v-if="dataUser.isAuth"><a class="dropdown-item" href="/employees">Сотрудники</a></li>
+								<li v-if="dataUser.isAuth"><a class="dropdown-item" href="/positions">Должности</a></li>
+								<li v-if="dataUser.isAuth"><a class="dropdown-item" href="/customers">Клиенты</a></li>
+								<li v-if="dataUser.isAuth"><a class="dropdown-item" href="/receipts">Поступления</a></li>
 								<li><a class="dropdown-item" href="/suppliers">Поставщики</a></li>
 							</ul>
 						</li>
 					</ul>
+				</div>
+				<form v-if="!dataUser.isAuth" @submit.prevent="signin" class="authForm">
+					<div v-if="modal.visibleAuth" class="authForm-inputs">
+						<input v-model="form.user.login" type="text" class="form-control" placeholder="Логин">
+						<input v-model="form.user.password" type="password" class="form-control" placeholder="Пароль">
+					</div>
+					<div v-if="modal.visibleAuth" class="authForm-btns">
+						<button @click="signin" class="btn btn-success">Войти</button>
+						<button @click="showAuthForm" class="btn btn-danger">Закрыть</button>
+					</div>
+					<button v-else @click="showAuthForm" class="btn btn-primary">Авторизоваться</button>
+				</form>
+				<div v-else class="profile">
+					<h4 class="text-light">{{dataUser.role}}</h4>
+					<button @click="exit" class="btn btn-danger">Выйти</button>
 				</div>
 			</div>
 		</nav>
@@ -55,23 +70,23 @@
 					<i class="bi bi-book"></i>
 					<a href="/books">Книги</a>
 				</h2>
-				<h2>
+				<h2 v-if="dataUser.isAuth">
 					<i class="bi bi-people"></i>
 					<a href="/employees">Сотрудники</a>
 				</h2>
-				<h2>
+				<h2 v-if="dataUser.isAuth">
 					<i class="bi bi-postcard"></i>
 					<a href="/positions">Должности</a>
 				</h2>
-				<h2>
+				<h2 v-if="dataUser.isAuth">
 					<i class="bi bi-bag-check"></i>
 					<a href="/customers">Клиенты</a>
 				</h2>
-				<h2>
+				<h2 v-if="dataUser.isAuth">
 					<i class="bi bi-cart-check"></i>
 					<a href="/purchases">Покупки</a>
 				</h2>
-				<h2>
+				<h2 v-if="dataUser.isAuth">
 					<i class="bi bi-box2-heart"></i>
 					<a href="/receipts">Поступления</a>
 				</h2>
@@ -100,4 +115,5 @@
 		padding-left: 10px;
 	}
 </style>
+
 </html>

@@ -115,7 +115,7 @@ const Receipt = sequelize.define(
 	}
 )
 
-const Suppliers = sequelize.define(
+const Supplier = sequelize.define(
 	'suppliers',
 	{
 		id: {
@@ -132,6 +132,23 @@ const Suppliers = sequelize.define(
 	}
 )
 
+const User = sequelize.define(
+	'users',
+	{
+		id: {
+			type: DataTypes.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		role: DataTypes.CHAR(20),
+		login: DataTypes.CHAR(50),
+		password: DataTypes.CHAR(32)
+	},
+	{
+		timestamps: false,
+	}
+)
+
 module.exports = {
 	Book,
 	Employee,
@@ -139,5 +156,6 @@ module.exports = {
 	Customer,
 	Purchaser,
 	Receipt,
-	Suppliers
+	Supplier,
+	User
 }
